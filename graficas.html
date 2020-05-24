@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel administrativo</title>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css" rel="stylesheet" />
+   
+   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"> </script>
+   
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
+    
+</head>
+<body>
+    <div class="ui container  fluid">
+      <div class="ui menu stackable fixed blue inverted">
+          
+        <a href="http://" class="active item">
+              <i class="home icon"></i>Inicio
+          </a>
+          <a href="" class="item">
+          <i class="info icon"></i> Ayuda
+          </a>
+          <div class="right menu">
+              <div class="ui dropdown item">
+                  Sites <i class="dropdown icon"></i>
+                  <div class="menu">
+                      <a href="" class="item">Site 1</a>
+                      <a href="" class="item">Site 2</a>
+                      <a href="" class="item">Site 3</a>
+                      <a href="" class="item">Site (n)</a>
+                      
+                  </div>
+                  
+              </div>
+              <div class="item">
+                  <div class="ui input">
+                      <input type="text" placeholder="Buscar ...">
+                      
+                  </div>
+                  
+              </div>
+              <div class="item">
+                  
+                  <div class="ui icon top left pointing dropdown button primary ">
+                      
+                      <i class="wrench icon"></i>
+                      <div class="menu">
+                          <div class="item"><i class="user icon blue"></i>Perfil</div>
+                          <div class="item">
+                              <i class="setting icon blue"></i>Configuración
+                              
+                          </div>
+                          <div class="item">
+                              <i class="window close icon blue"></i>
+                              Log Out
+                              
+                          </div>
+                          
+                      </div>
+                  </div>
+                  
+              </div>
+              
+          </div>
+      </div>   
+        <br/>
+        <br/>
+        <br/>
+        <div class="ui grid stackable">
+            <div class="two wide column blue">
+                <div class="ui vertical labeled icon menu inverted blue">
+                    
+                   <a href="index.html" class="item"><i class="dashboard icon"></i>Resumen</a>
+                   
+                   <a href="graficas.html" class="item"><i class="bar chart icon"></i>Gráficas</a>
+                   
+                   <a href="tablas.html" class="item"><i class="table play icon"></i>Tablas</a>
+                   
+                   <a href="formularios.html" class="item"><i class="browser icon"></i>Formularios</a>
+                   
+                   <a href="pagina.html" class="item"><i class="file outline icon"></i>Páginas</a>
+                   
+                   <a href="elementos.html" class="item"><i class="setting icon"></i>Elementos de Semantic UI</a>
+                    
+                </div>
+                
+            </div>
+            
+            
+            <!-- Contenido central-->
+            <div class="fourteen wide column">
+                <div class="ui equal width grid stackable">
+                    
+                    <div class="column">
+                        <div class="ui segment">
+                            <!-- Gráfica 1-->
+                            <h2 class="header">Gráfica 1</h2>
+                            
+<div id="curve_chart" style="width: 500px; height: 300px;"></div>                            
+                          <script type="text/javascript">
+                                google.charts.load('current', {
+                                    'packages': ['corechart']
+                                });
+                            google.charts.setOnLoadCallback(drawChartone);
+
+                                function drawChartone() {
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Año', 'Ventas', 'TAX'],
+                                        ['2017', 1000, 400],
+                                        ['2018', 1170, 460],
+                                        ['2019', 660, 1120],
+                                        ['2020', 1030, 540]
+                                    ]);
+
+                                    var options = {
+                                        title: 'Ejemplo de contenido de serie históica',
+                                        curveType: 'function',
+                                        legend: {
+                                            position: 'bottom'
+                                        }
+                                    };
+
+                                    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+                                    chart.draw(data, options);
+                                }
+
+                            </script> 
+                           
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="column">
+                        <div class="ui segment">
+
+                           
+                         <h2 class="header">Gráfica 2</h2>
+                              
+                            <div id="dashboard_div centered">
+                           
+                                <div id="filter_div"></div>
+                                <div id="chart_div"></div>
+                            </div>
+                            
+                            <script type="text/javascript">
+                                
+                                google.charts.load('current', {
+                                    'packages': ['corechart', 'controls']
+                                });
+
+                               
+                                google.charts.setOnLoadCallback(drawDashboard);
+
+                               
+                               
+                                function drawDashboard() {
+
+                            
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Name', 'Donuts eaten'],
+                                        ['Ana', 100],
+                                        ['Rafael', 70],
+                                        ['María', 85],
+                                      
+                                    ]);
+
+                                   
+                                    var dashboard = new google.visualization.Dashboard(
+                                        document.getElementById('dashboard_div'));
+
+                                    
+                                    var donutRangeSlider = new google.visualization.ControlWrapper({
+                                        'controlType': 'NumberRangeFilter',
+                                        'containerId': 'filter_div',
+                                        'options': {
+                                            'filterColumnLabel': 'Donuts eaten'
+                                        }
+                                    });
+
+                                  
+                                    var pieChart = new google.visualization.ChartWrapper({
+                                        'chartType': 'PieChart',
+                                        'containerId': 'chart_div',
+                                        'options': {
+                                            'width': 450,
+                                            'height': 280,
+                                            'pieSliceText': 'value',
+                                            'legend': 'right'
+                                        }
+                                    });
+
+                                  
+                                    dashboard.bind(donutRangeSlider, pieChart);
+
+                                 
+                                    dashboard.draw(data);
+                                }
+
+                            </script> 
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+                <div class="ui equal width grid stackable">
+                <div class="column">
+                    <div class="ui segment">
+                        
+                     
+                       <h2 class="header">Gráfica 3</h2>
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+                        
+                               <script type="text/javascript">
+                                google.charts.load('current', {
+                                    'packages': ['corechart']
+                                });
+                                google.charts.setOnLoadCallback(drawChart);
+
+                                function drawChart() {
+
+                                    var data = google.visualization.arrayToDataTable([
+                                        ['Tareas', 'Horas por días'],
+                                        ['Proyecto 1', 11],
+                                        ['Proyecto 2', 2],
+                                     
+                                    ]);
+
+                                    var options = {
+                                        title: 'Gráfica completa'
+                                    };
+
+                                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                    chart.draw(data, options);
+                                }
+
+                            </script>
+                        
+                   
+                    </div>
+                    
+                </div>
+                </div>
+                
+                <div class="ui equal width grid stackable">
+                    <div class="column">
+                        <div class="ui segment">
+                            
+                            <h2>Gráfica 4</h2>
+                            
+                            <script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Horas", "Productividad", { role: "style" } ],
+        ["Empleado A", 8.94, "#b87333"],
+        ["Empleado B", 10.49, "silver"],
+        ["Empleado C", 19.30, "gold"],
+        ["Empleado (n)", 21.45, "color: #e5e4e2"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Productividad del proyecto",
+        width: 1024,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+      chart.draw(view, options);
+  }
+  </script>
+<div id="columnchart_values" style="width: 1024px; height: 500px;"></div>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+           
+            
+        </div>
+        
+    </div>
+    <script>
+    $('.ui.dropdown').dropdown();
+    
+    </script>
+    
+</body>
+</html>
